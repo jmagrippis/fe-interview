@@ -4,11 +4,15 @@
   "private": true,
   "dependencies": {
     "json-server": "^0.14.0",
-    "node-sass": "^4.9.4",
-    "react": "^16.5.2",
-    "react-dom": "^16.5.2",
-    "react-scripts": "2.0.5",
+    "react": "^16.6.0",
+    "react-dom": "^16.6.0",
+    "react-scripts": "2.1.1",
     "styled-components": "^4.0.2"
+  },
+  "devDependencies": {
+    "husky": "^1.1.3",
+    "lint-staged": "^8.0.4",
+    "prettier": "^1.14.3"
   },
   "scripts": {
     "api": "json-server --watch db.json --port 3002",
@@ -24,5 +28,16 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+      "prettier --single-quote --write",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  }
 }

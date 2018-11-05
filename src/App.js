@@ -1,11 +1,10 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
+
 import welcomeIcon from './assets/welcome.jpg';
 
-class App extends Component {
+class App extends PureComponent {
   render() {
-    return (
-      <img src={welcomeIcon} alt="Welcome!"/>
-    );
+    return <img src={welcomeIcon} alt="Welcome!" />;
   }
 }
 
