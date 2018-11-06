@@ -21,4 +21,8 @@ export const typeDefs = gql`
     bills: [Bill]!
     bill(id: String!): Bill
   }
+
+  type Mutation {
+    updateBill(id: String!, isBill: Boolean): Bill
+  }
 `;

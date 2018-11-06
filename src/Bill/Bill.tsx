@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 
 import { Bill as BillType } from '../types';
 import { Transactions } from './Transactions/Transactions';
+import { ToggleBill } from './ToggleBill/ToggleBill';
 
 const getTransactionCountCopy = (count: number) =>
   `${count} transaction${count > 1 && 's'}`;
@@ -20,7 +21,7 @@ export class Bill extends PureComponent<BillType, State> {
   };
 
   render() {
-    const { id, name, transactionCount } = this.props;
+    const { id, name, transactionCount, isBill } = this.props;
     const { isExpanded } = this.state;
 
     return (
@@ -28,6 +29,7 @@ export class Bill extends PureComponent<BillType, State> {
         <div>{name}</div>
         <div>{getTransactionCountCopy(transactionCount)}</div>
         {isExpanded && <Transactions billId={id} />}
+        <ToggleBill id={id} isBill={isBill} />
       </li>
     );
   }

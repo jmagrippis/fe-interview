@@ -18,9 +18,19 @@ const bill = (_, { id }) => {
   return { ...b, transactionCount: b.transactions.length };
 };
 
+const updateBill = (_, { id, ...update }) =>
+  db
+    .get('bills')
+    .find(['id', id])
+    .assign(update)
+    .write();
+
 export const resolvers = {
   Query: {
     bills,
     bill
+  },
+  Mutation: {
+    updateBill
   }
 };

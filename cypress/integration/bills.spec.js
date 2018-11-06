@@ -2,6 +2,12 @@ const { cy, before } = global;
 
 describe('Bills tab', () => {
   before(() => {
+    cy.exec('cd server && yarn db:seed && cd ..')
+      .its('code')
+      .should('eq', 0);
+    cy.exec('yarn waitForApi')
+      .its('code')
+      .should('eq', 0);
     cy.visit('/');
   });
 
@@ -24,7 +30,7 @@ describe('Bills tab', () => {
       cy.get('li:last').should('contain', '5');
     });
 
-    it('displays its list of transactions once clicked', () => {
+    it('displays or hides its list of transactions once clicked', () => {
       cy.get('[data-qa="transactions-5a5caa1efe33900100fd8ed5"]').should(
         'not.exist'
       );
@@ -38,6 +44,20 @@ describe('Bills tab', () => {
         'have.length',
         5
       );
+
+      cy.get('li:first').click();
+
+      cy.get('[data-qa="transactions-5a5caa1efe33900100fd8ed5"]').should(
+        'not.exist'
+      );
+    });
+
+    it('removes the bill when clicking the relevant button', () => {
+      cy.get('li').should('have.length', 6);
+
+      cy.get('li:first button').click();
+
+      cy.get('li').should('have.length', 5);
     });
   });
 });

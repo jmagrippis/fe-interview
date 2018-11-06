@@ -2,6 +2,12 @@ const { cy, before } = global;
 
 describe('App', () => {
   before(() => {
+    cy.exec('cd server && yarn db:seed && cd ..')
+      .its('code')
+      .should('eq', 0);
+    cy.exec('yarn waitForApi')
+      .its('code')
+      .should('eq', 0);
     cy.visit('/');
   });
 
