@@ -28,8 +28,8 @@ export const Home = () => (
 
       return (
         <ul>
-          {getActiveBills(data.bills).map(({ id }: Bill) => (
-            <li key={id}>I am a bill</li>
+          {getActiveBills(data.bills).map(({ id, name }: Bill) => (
+            <li key={id}>{name}</li>
           ))}
         </ul>
       );
