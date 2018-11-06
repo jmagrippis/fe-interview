@@ -11,4 +11,5 @@ export interface Bill {
   isBill: boolean;
   name: string;
   transactions: Transaction[];
+  transactionCount: number;
 }

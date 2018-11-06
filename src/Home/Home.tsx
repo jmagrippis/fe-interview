@@ -12,6 +12,7 @@ const GET_BILLS = gql`
       id
       name
       isBill
+      transactionCount
     }
   }
 `;
@@ -19,6 +20,9 @@ const GET_BILLS = gql`
 const getActiveBills = memoize(
   (bills: Bill[]): Bill[] => bills.filter(({ isBill }) => isBill)
 );
+
+const getTransactionCountCopy = (count: number) =>
+  `${count} transaction${count > 1 && 's'}`;
 
 export const Home = () => (
   <Query query={GET_BILLS}>
@@ -28,9 +32,14 @@ export const Home = () => (
 
       return (
         <ul>
-          {getActiveBills(data.bills).map(({ id, name }: Bill) => (
-            <li key={id}>{name}</li>
-          ))}
+          {getActiveBills(data.bills).map(
+            ({ id, name, transactionCount }: Bill) => (
+              <li key={id}>
+                <div>{name}</div>
+                <div>{getTransactionCountCopy(transactionCount)}</div>
+              </li>
+            )
+          )}
         </ul>
       );
     }}

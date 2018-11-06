@@ -14,6 +14,7 @@ export const typeDefs = gql`
     isBill: Boolean!
     name: String!
     transactions: [Transaction]!
+    transactionCount: Int!
   }
 
   type Query {
