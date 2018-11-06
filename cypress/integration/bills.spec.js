@@ -23,5 +23,21 @@ describe('Bills tab', () => {
       cy.get('li:first').should('contain', '5');
       cy.get('li:last').should('contain', '5');
     });
+
+    it('displays its list of transactions once clicked', () => {
+      cy.get('[data-qa="transactions-5a5caa1efe33900100fd8ed5"]').should(
+        'not.exist'
+      );
+
+      cy.get('li:first').click();
+
+      cy.get('[data-qa="transactions-5a5caa8efe33900100fd8ed6"]').should(
+        'exist'
+      );
+      cy.get('[data-qa="transactions-5a5caa8efe33900100fd8ed6"] li').should(
+        'have.length',
+        5
+      );
+    });
   });
 });

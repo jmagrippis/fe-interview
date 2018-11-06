@@ -19,5 +19,6 @@ export const typeDefs = gql`
 
   type Query {
     bills: [Bill]!
+    bill(id: String!): Bill
   }
 `;

@@ -4,7 +4,8 @@ import gql from 'graphql-tag';
 import memoize from 'memoize-one';
 
 import { Loading } from '../Loading/Loading';
-import { Bill } from '../types';
+import { Bill } from '../Bill/Bill';
+import { Bill as BillType } from '../types';
 
 const GET_BILLS = gql`
   {
@@ -18,11 +19,8 @@ const GET_BILLS = gql`
 `;
 
 const getActiveBills = memoize(
-  (bills: Bill[]): Bill[] => bills.filter(({ isBill }) => isBill)
+  (bills: BillType[]): BillType[] => bills.filter(({ isBill }) => isBill)
 );
-
-const getTransactionCountCopy = (count: number) =>
-  `${count} transaction${count > 1 && 's'}`;
 
 export const Home = () => (
   <Query query={GET_BILLS}>
@@ -32,14 +30,9 @@ export const Home = () => (
 
       return (
         <ul>
-          {getActiveBills(data.bills).map(
-            ({ id, name, transactionCount }: Bill) => (
-              <li key={id}>
-                <div>{name}</div>
-                <div>{getTransactionCountCopy(transactionCount)}</div>
-              </li>
-            )
-          )}
+          {getActiveBills(data.bills).map((bill: BillType) => (
+            <Bill key={bill.id} {...bill} />
+          ))}
         </ul>
       );
     }}
