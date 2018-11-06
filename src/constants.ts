@@ -4,7 +4,3 @@ export const styles = {
     yellow: '#F7BF31'
   }
 };
-
-export const api = {
-  base: 'http://localhost:3002/'
-};

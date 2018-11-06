@@ -1,3 +1,38 @@
 import React from 'react';
+import { Query } from 'react-apollo';
+import gql from 'graphql-tag';
+import memoize from 'memoize-one';
 
-export const Home = () => <div>Home</div>;
+import { Loading } from '../Loading/Loading';
+import { Bill } from '../types';
+
+const GET_BILLS = gql`
+  {
+    bills {
+      id
+      name
+      isBill
+    }
+  }
+`;
+
+const getActiveBills = memoize(
+  (bills: Bill[]): Bill[] => bills.filter(({ isBill }) => isBill)
+);
+
+export const Home = () => (
+  <Query query={GET_BILLS}>
+    {({ loading, error, data }) => {
+      if (loading) return <Loading />;
+      if (error) return <div>Error :(</div>;
+
+      return (
+        <ul>
+          {getActiveBills(data.bills).map(({ id }: Bill) => (
+            <li key={id}>I am a bill</li>
+          ))}
+        </ul>
+      );
+    }}
+  </Query>
+);
