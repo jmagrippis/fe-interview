@@ -30,6 +30,26 @@ describe('Bills tab', () => {
       cy.get('li:last').should('contain', '5');
     });
 
+    it('loads an icon if there is one listed', () => {
+      cy.get('li:first img')
+        .should('have.attr', 'src')
+        .and(
+          'include',
+          'https://pbs.twimg.com/profile_images/787957563463725056/duc0g4fp.jpg'
+        );
+
+      cy.get('li:last img')
+        .should('have.attr', 'src')
+        .and(
+          'include',
+          'https://pbs.twimg.com/profile_images/1026480580156968960/kpcHBd7s.jpg'
+        );
+    });
+
+    it('loads an svg icon if there not one listed', () => {
+      cy.get('li:nth-child(4) svg').should('exist', 'src');
+    });
+
     it('displays or hides its list of transactions once clicked', () => {
       cy.get('[data-qa="transactions-5a5caa1efe33900100fd8ed5"]').should(
         'not.exist'

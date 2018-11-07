@@ -10,11 +10,11 @@ export const typeDefs = gql`
   type Bill {
     id: ID!
     categoryId: Int!
-    iconUrl: String!
     isBill: Boolean!
     name: String!
     transactions: [Transaction]!
     transactionCount: Int!
+    iconUrl: String
   }
 
   type Query {

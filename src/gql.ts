@@ -6,6 +6,7 @@ export const GET_BILLS = gql`
       id
       name
       isBill
+      iconUrl
       transactionCount
     }
   }
