@@ -6,17 +6,7 @@ import memoize from 'memoize-one';
 import { Loading } from '../Loading/Loading';
 import { Bill } from '../Bill/Bill';
 import { Bill as BillType } from '../types';
-
-const GET_BILLS = gql`
-  {
-    bills {
-      id
-      name
-      isBill
-      transactionCount
-    }
-  }
-`;
+import { GET_BILLS } from '../gql';
 
 const getActiveBills = memoize(
   (bills: BillType[]): BillType[] => bills.filter(({ isBill }) => isBill)

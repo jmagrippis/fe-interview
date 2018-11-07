@@ -20,9 +20,9 @@ export const ToggleBill = ({ id, isBill }: Props) => (
   <Mutation mutation={UPDATE_BILL}>
     {updateBill => (
       <button
-        onClick={e => {
-          e.preventDefault();
-          e.stopPropagation();
+        onClick={event => {
+          event.preventDefault();
+          event.stopPropagation();
           updateBill({ variables: { id, isBill: !isBill } });
         }}
       >
