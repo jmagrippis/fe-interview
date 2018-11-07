@@ -35,7 +35,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "waitForApi": "./waitForApi.sh",
-    "cypress": "cypress"
+    "cypress": "cypress",
+    "deploy": "yarn build && gcloud app deploy"
   },
   "eslintConfig": {
     "extends": "react-app"

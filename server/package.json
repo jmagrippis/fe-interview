@@ -10,7 +10,8 @@
     "tsc": "tsc",
     "dev": "PORT=3002 nodemon ./dist/index.js",
     "db:seed": "rm db.json && cp dbSeed.json db.json",
-    "build": "NODE_ENV=production tsc"
+    "build": "NODE_ENV=production tsc",
+    "deploy": "yarn build && gcloud app deploy"
   },
   "dependencies": {
     "apollo-server": "^2.1.0",
