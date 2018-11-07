@@ -4,7 +4,7 @@
       "categoryId": 1,
       "iconUrl": "https://pbs.twimg.com/profile_images/915824582455627776/nsyHCFq9.jpg",
       "id": "5a5caa1efe33900100fd8ed5",
-      "isBill": true,
+      "isBill": false,
       "name": "Vodafone",
       "transactions": [
         {

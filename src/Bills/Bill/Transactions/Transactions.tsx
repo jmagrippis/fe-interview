@@ -14,10 +14,15 @@ const GET_BILL = gql`
     bill(id: $id) {
       transactions {
         id
+        amount
+        date
       }
     }
   }
 `;
+
+const getFormattedDate = (date: string): string =>
+  new Date(date).toLocaleDateString('en-GB');
 
 export const Transactions = ({ billId }: Props) => (
   <Query query={GET_BILL} variables={{ id: billId }}>
@@ -27,8 +32,10 @@ export const Transactions = ({ billId }: Props) => (
 
       return (
         <ul data-qa={`transactions-${billId}`}>
-          {data.bill.transactions.map(({ id }: Transaction) => (
-            <li key={id}>I am a transaction</li>
+          {data.bill.transactions.map(({ id, amount, date }: Transaction) => (
+            <li key={id}>
+              £{amount} on {getFormattedDate(date)}
+            </li>
           ))}
         </ul>
       );

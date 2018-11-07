@@ -50,28 +50,6 @@ describe('Bills tab', () => {
       cy.get('li:nth-child(4) svg').should('exist', 'src');
     });
 
-    it('displays or hides its list of transactions once clicked', () => {
-      cy.get('[data-qa="transactions-5a5caa1efe33900100fd8ed5"]').should(
-        'not.exist'
-      );
-
-      cy.get('li:first').click();
-
-      cy.get('[data-qa="transactions-5a5caa8efe33900100fd8ed6"]').should(
-        'exist'
-      );
-      cy.get('[data-qa="transactions-5a5caa8efe33900100fd8ed6"] li').should(
-        'have.length',
-        5
-      );
-
-      cy.get('li:first').click();
-
-      cy.get('[data-qa="transactions-5a5caa1efe33900100fd8ed5"]').should(
-        'not.exist'
-      );
-    });
-
     it('removes the bill when clicking the relevant button', () => {
       cy.get('li').should('have.length', 6);
 
