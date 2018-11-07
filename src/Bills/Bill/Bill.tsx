@@ -33,6 +33,7 @@ const Icon = styled.div`
 
 const Info = styled.div`
   flex: 1;
+  margin-right: 20px;
 `;
 
 interface State {
