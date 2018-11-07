@@ -2,8 +2,8 @@ import React from 'react';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 
-import { Transaction } from '../../types';
-import { Loading } from '../../Loading/Loading';
+import { Transaction } from '../../../types';
+import { Loading } from '../../../Loading/Loading';
 
 interface Props {
   billId: string;

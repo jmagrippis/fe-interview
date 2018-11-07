@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 
-import { Bill as BillType } from '../types';
+import { Bill as BillType } from '../../types';
 import { Transactions } from './Transactions/Transactions';
 import { ToggleBill } from './ToggleBill/ToggleBill';
 
